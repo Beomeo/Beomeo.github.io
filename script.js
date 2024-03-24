@@ -31,6 +31,10 @@ function setBanner(x){
     {opacity: 0, transform: "translate(0, 50px)"},
     {opacity: 1}
   ];
+  let imgframes = [
+    {opacity: 0, transform: "translate(50px, 0)"},
+    {opacity: 1}
+  ];
   let options = {
     delay: 0,
     duration: 500,
@@ -40,6 +44,8 @@ function setBanner(x){
   document.getElementById('banner-title').innerText = data.title;
   document.getElementById('banner-des').innerText = data.description;
   document.getElementById('banner-text').animate(keyframes, options);
+  document.getElementById('banner-img').innerText = data.title;
+  document.getElementById('banner-img').animate(imgframes, options);
   banner.style.backgroundColor = data.color;
   document.getElementById('banner-a').href = data.url;
   document.getElementById('banner-cur').innerText = x + 1;
