@@ -98,31 +98,73 @@ header {
     text-shadow: 1px 1px 8px #bdbdbd;
 }
 
-#dev-btn {
-    font-family: 'EliceDigitalBaeum-Bd';
+#enters {
+    display: flex;
+    gap: 10px;
     margin: 10px;
-    padding: 0.2em 0.5em 0.3em;
-    font-size: 1.4em;
-    border-radius: 10px;
+}
+
+#search-box {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #b0d1e7;
+    border: none;
+    transition: border 300ms;
+}
+
+#search {
+  background: #0000;
+  border: none;
+  padding: 0.1em 1em 0.1em;
+  width: 15rem;
+  height: 100%;
+  font-family: 'Nanum Gothic';
+}
+
+.icon{
+    color: #4f5b66;
+    margin: 6px 0 10px 13px;
+}
+
+#search:focus {
+    outline: none;
+}
+
+.enter-btn {
+    font-family: 'EliceDigitalBaeum-Bd';
+    min-width: 4.5em;
+    text-align: center;
+    padding: 0.1em 0.3em 0.2em;
+    font-size: 1.2em;
+    border-radius: 20px;
     border: solid 3px;
     cursor: pointer;
     transition: all 300ms;
-    color: #a9a9a9;
     user-select: none;
+    color: #a9a9a9;
 }
 
-#dev-btn:hover {
-    scale: 1.03;
+.enter-btn:hover {
     background-color: #a9a9a9;
     color: #fff;
     border-color: #a9a9a9;
+}
+
+#login-btn {
+    color: #50b9ff;
+}
+
+#login-btn:hover {
+    background-color: #50b9ff;
+    color: #fff;
+    border-color: #50b9ff;
 }
 
 #content {
     margin-top: 6rem;
     box-sizing: border-box;
     width: 100%;
-    /* padding: 10px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -149,13 +191,19 @@ header {
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    text-decoration-line: none;
 }
 
 #banner-img {
     width: 20rem;
     height: 20rem;
-    background-color: black;
     margin: 40px 0;
+
+    border: 1px solid;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #banner-text {
@@ -251,55 +299,6 @@ header {
 .int-name {
     text-align: end;
     padding: 0.1em 0 0.2em;
-}
-
-#app {
-    margin: 20px 60px;
-    padding: 10px 30px;
-    background-color: #e9eef0;
-}
-
-#app-title {
-    font-size: 2.7rem;
-    text-align: center;
-    font-family: 'HakgyoansimBareondotumB';
-    margin-bottom: 0.5rem;
-}
-
-.app-ol {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0.6rem;
-}
-
-.app-titles {
-    display: flex;
-    align-items: baseline;
-}
-
-.app-no {
-    font-size: 1.5rem;
-    color: #696969;
-}
-
-.app-text {
-    font-size: 1.9rem;
-}
-
-.app-ul {
-    margin: 0.4rem 0;
-    font-size: 1.2rem;
-}
-
-a {
-    text-decoration-line: none;
-    color: #50b9ff;
-    transition: color 300ms;
-    cursor: pointer;
-}
-
-.app-label {
-    white-space: nowrap;
 }
 
 #application {
@@ -574,7 +573,7 @@ footer {
 }
 
 #footer-title {
-    font-family: 'EliceDigitalBaeum_Bold';
+    font-family: "EliceDigitalBaeum_Bold";
     font-weight: 700;
     font-size: 3rem;
     margin: 0.2em 0.3em 0.3em;
@@ -587,17 +586,31 @@ footer {
     align-items: flex-start;
 }
 
-#hidden-btn {
-    color: #808080;
-    cursor: pointer;
-    transition: all 300ms;
-    padding: 0.2em 0.5em 0.2em;
-    border-radius: 7px;
-    user-select: none;
+#footer-shortcut {
+    background-color: #656565;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 3px #3f3f3f;
 }
 
-#hidden-btn:hover {
-    background-color: #6e6e6e;
+#footer-shortcut-title {
+    font-family: "Nanum Gothic";
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding: 0.1em 0 0.5em;
+    color: #8c8c8c;
+}
+
+#footer-icons {
+    display: flex;
+    gap: 10px;
+    fill: #1c1c1c;
+}
+
+.footer-icon {
+    width: 30px;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
