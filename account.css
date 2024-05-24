@@ -1,0 +1,283 @@
+html, header {
+    background-color: #0d1117;
+}
+
+header {
+    box-shadow: none;
+}
+
+#logo {
+    height: 3rem;
+    margin: 16px;
+    margin-left: 5rem;
+    transition: none;
+}
+
+#logo-box:hover #logo {
+    scale: 1;
+    box-shadow: none;
+}
+
+#title {
+    font-size: 2.8em;
+    color: #45a6ff;
+    padding: 0.05em 0.1em 0.1em;
+    transition: none;
+}
+
+#logo-box:hover #title {
+    scale: 1;
+    text-shadow: none;
+}
+
+#content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#left, #right {
+    width: 25em;
+    margin: 50px 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+#left h1 {
+    font-size: 1.55em;
+    color: white;
+}
+
+#code {
+    user-select: none;
+}
+
+#code.active {
+    color: black;
+    background-color: white;
+}
+
+#code b {
+    display: none;
+}
+
+#code.active b {
+    display: inline;
+}
+
+#card {
+    margin: 45px;
+    margin-top: 6rem;
+    transition: all 100ms;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(transparent 66%, #0d1117 77%);
+    background-size: 150% 150%;
+    background-position: center;
+}
+
+#right {
+    width: 30em;
+    margin: 40px 100px;
+}
+
+#account {
+    width: 100%;
+    background: #f9fafb;
+    border: 1px solid #d7d7d7;
+    border-radius: 1rem;
+    padding: 0 30px 10px;
+    box-sizing: border-box;
+    margin-top: 6rem;
+}
+
+#account-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 150%;
+    color: #000;
+    text-align: center;
+    margin: 0.8em 0.5em 0.6em;
+}
+
+#input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-input {
+    width: 100%;
+    height: 2.2rem;
+    padding: .5rem 2.5rem .5rem 2.75rem;
+    line-height: 24px;
+    border: 1px solid #d7e2eb;
+    border-radius: .25rem;
+    font-size: 1.1em;
+}
+
+.svg {
+    position: absolute;
+    left: 1rem;
+}
+
+.input svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#hider {
+    position: absolute;
+    right: 2.125rem;
+    cursor: pointer;
+}
+
+#hider svg {
+    width: 1.3rem;
+}
+
+#button {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: 0;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 46px;
+    border-radius: 4px;
+    transition: all .2s ease-out;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#log-in {
+    color: #fff;
+    background-color: #000;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#sign-up {
+    color: #263747;
+    background-color: #fbfbfd;
+    border: 1px solid #d7e2eb;
+}
+
+#reset {
+    margin-top: 14px;
+    text-align: right;
+}
+
+#reset a {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 160%;
+    color: #667380;
+    text-decoration-line: underline;
+    letter-spacing: -0.087px;
+}
+
+#sns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 48px;
+    text-align: center;
+}
+
+#sns-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    color: #0f1317;
+}
+
+#sns-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#sns-section img {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+}
+
+.sns-title {
+    font-size: 12px;
+    line-height: 17px;
+    color: #505050;
+    text-align: center;
+}
+
+#footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 3.75rem;
+    font-size: .9375rem;
+    color: #fff;
+}
+
+.footer-item {
+    color: #fff;
+}
+
+.footer-item:nth-of-type(1) {
+    text-align: right;
+}
+
+.footer-item:nth-of-type(2) {
+    text-align: center;
+}
+
+.footer-item:nth-of-type(3) {
+    text-align: left;
+}
+
+#footer hr {
+    width: 1px;
+    height: .75rem;
+    margin: 0 1.125rem;
+    background: #fff;
+    opacity: .3;
+}
+
+.bold {
+    font-weight: 600;
+}
