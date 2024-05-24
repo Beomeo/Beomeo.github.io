@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학습지</title>
+    <!-- <base href="https://beomeo.github.io/"> -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="images/favicon.ico">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <div>알아야 하는 것들</div>
+    <h2>2024/04/03</h2>
+    <h1>상호작용 명령어</h1>
+    <h3>1. console.log</h3>
+    <pre><code class="javascript">console.log("Hello, world!"); //Hello, world!
+//undefined</code></pre>
+    <li>콘솔에 로그를 띄운다.</li>
+    <h3>2. alert</h3>
+    <pre><code class="javascript">alert("비밀번호가 일치하지 않습니다.");</code></pre>
+    <li>웹사이트에 경고창을 띄운다.</li>
+    <h3>3. prompt</h3>
+    <pre><code class="javascript">var answer = prompt("당신의 학번은?");
+//(입력값)</code></pre>
+    <li>사용자의 정보를 입력받는 창을 띄우고, 입력된 값을 반환한다.</li>
+    <h1>변수 명령어</h1>
+    <h3>1. var</h3>
+    <pre><code class="javascript">var classNumber = '30414';
+//undefined</code></pre>
+    <li>가장 기본적인 변수 명령어</li>
+    <li>같은 이름의 변수도 언제든 선언 가능하다.</li>
+    <li>변수값도 언제든지 변경 가능하다.</li>
+    <li>다른게 익숙하지 않다면 전부 이걸로 쓰는 게 처음에는 편하다.</li>
+    <h3>2. let</h3>
+    <pre><code class="javascript">let boolean = true;
+//undefined</code></pre>
+    <li>익숙해지면 var보다 많이 쓰게 된다.</li>
+    <li>같은 이름의 변수는 다시 선언하지 못한다.</li>
+    <li>변수값은 변경 가능하다.</li>
+    <li>블록 레벨 스코프이기 때문에 블록 내에서 선언되면 블록 내에서만 유효하다.</li>
+    <h3>3. const</h3>
+    <pre><code class="javascript">const canvas = document.getElementById('canvas');
+//undefined</code></pre>
+    <li>같은 이름의 변수를 다시 선언하지 못하고, 변수값도 변경 불가능하다.</li>
+    <li>또한 let과 같은 블록 레벨 스코프이다.</li>
+    <li>제한된 사항이 많아 보통 주소 등을 저장할 때 쓰인다.</li>
+    <h1>데이터 타입</h1>
+    <h3>1. 숫자형(Number)</h3>
+    <h4>a. 정수</h4>
+    <pre><code class="javascript">100 //100
+0 //0
+-99 //-99</code></pre>
+    <h4>b. 소수</h4>
+    <pre><code class="javascript">0.102 //0.102
+0.1 + 0.2 //0.30000000000000004</code></pre>
+    <li>자바스크립트 특성상 오류가 나기 쉽다.</li>
+    <li>중요하지 않은데에만 사용하자.</li>
+    <h4>c. 무한</h4>
+    <pre><code class="javascript">Infinity //Infinity
+Infinity + 1 //Infinity
+Math.pow(10, 1000) //Infinity
+Math.log(0) //-Infinity
+1 / Infinity //0
+1 / 0 //Infinity</code></pre>
+    <li>일정수를 초과하면 자바스크립트는 Infinity로 인식한다.</li>
+    <li>수학적 무한과는 차이가 있다.</li>
+    <li>코딩에서 실제로 잘 쓰지는 않는다.</li>
+    <h4>d. NaN</h4>
+    <pre><code class="javascript">NaN //NaN
+Infinity - Infinity //NaN
++"숫자 1" //NaN
+NaN + 10 //NaN
+'Ba' + NaN + 'a' //'BaNaNa'</code></pre>
+    <li>Not a Number, 말 그대로 숫자가 아니다.(다만, 데이터 타입은 숫자형으로 분류한다.)</li>
+    <li>오류가 떴을 때 자주 만나게 된다.</li>
+    <li>자주 안보는게 제일 좋다.</li>
+    <h3>2. 문자열(String)</h3>
+    <pre><code class="javascript">'작은 따옴표' //'작은 따옴표'
+"큰 따옴표" //"큰 따옴표"
+`억음 부호` //`억음 부호`</code></pre>
+    <li>작은 따옴표(‘)나 큰 따옴표(“), 억음 부호(`)로 문자를 감싸서 사용한다.</li>
+    <li>만약 이 부호들을 문자로서 사용하고 싶다면, 사용하고 싶은 부호 외의 부호로 감싸면 된다.</li>
+    <li>그 외의 방법으로는 역슬래시(\)를 앞에 붙이면 된다.(\도 마찬가지로 \\로 쓰면 된다.)</li>
+    <li>억음 부호는 줄바꿈(Enter)도 인식한다.</li>
+    <h3>3. 불리언(Boolean)</h3>
+    <pre><code class="javascript">true //true
+        false //false</code></pre>
+    <li>참과 거짓을 나타내는 데이터 타입이다.</li>
+    <h3>4. 배열(Array)</h3>
+    <pre><code class="javascript">['공수권', '김민수', '문재웅'] //['공수권', '김민수', '문재웅']
+['공', '수', '권'][0] //'공'
+['I', 'You', 'He/She'][1] //'You'
+[0.1231, 1201, '5'][2] //'5'
+[false, 2, true].length //3</code></pre>
+    <li>데이터의 정렬이다.</li>
+    <li>각 데이터들은 순서에 따른 번호(인덱스)를 가진다.</li>
+    <li>가장 앞에 있는 데이터가 0, 뒤로 갈 수록 1 씩 증가한다.</li>
+    <li>예) 반에서의 번호에 따른 학생들의 정렬</li>
+    <h3>5. 객체(Object)</h3>
+    <pre><code class="javascript">let minsu = {
+    name : "김민수",
+    number : 5,
+    male : true,
+    friends : ["이진우", "염규원", "공수권"]
+}
+//undefined
+minsu //{name: '김민수', number: 5, male: true, friends: Array(3)}
+minsu.name //'김민수'
+minsu.friends //(3) ['이진우', '염규원', '공수권']</code></pre>
+    <li>이름을 가진 데이터의 집합이다.</li>
+    <li>객체 안의 데이터들은 각각 서로 다른 이름을 가진다.</li>
+    <li>이름은 변수와 마찬가지로 숫자로 시작하면 안된다.</li>
+    <li>예) 각 반의 학생</li>
+    <h3>6. 기타</h3>
+    <pre><code class="javascript">null</code></pre>
+    <li>값이 의도적으로 비어져 있는 경우</li>
+    <pre><code class="javascript">undefined</code></pre>
+    <li>값이 반환되지 않는 경우</li>
+    
+    <pre><code class="javascript"></code></pre>
+</body>
+</html>
