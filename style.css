@@ -151,6 +151,10 @@ header {
     border-color: #a9a9a9;
 }
 
+.enter-btn.hidden {
+    display: none;
+}
+
 #login-btn {
     color: #50b9ff;
 }
@@ -159,6 +163,10 @@ header {
     background-color: #50b9ff;
     color: #fff;
     border-color: #50b9ff;
+}
+
+#loged-in.hidden {
+    display: none;
 }
 
 #content {
