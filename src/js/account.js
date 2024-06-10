@@ -17,22 +17,23 @@ document.querySelector("#code").addEventListener("click", function(){
     this.classList.toggle('active');
 })
 
-document.getElementById('hider').addEventListener("click", function(){
-    let pw = document.getElementById("password");
-    if(pw.type == 'password'){
-        pw.type = 'text';
-    }else{
-        pw.type = 'password';
-    }
+document.querySelectorAll('.hider-toggle').forEach((a, i) => {
+    a.addEventListener("click", function(){
+        let id = 'password';
+        if(i == 1) id = 'repw';
+        let input = document.getElementById(id);
+        input.type = input.type == 'text' ? 'password' : 'text';
 
-    document.querySelectorAll(".hider").forEach(a => {
-        a.classList.toggle('active');
+        a.querySelectorAll(".hider").forEach(x => {
+            x.classList.toggle('active');
+        })
     })
 })
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDRIEG9pedF7-yJ3Pcad23-JBgxb7Jd2J0",
@@ -47,16 +48,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-// createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-//     const user = userCredential.user;
-// }).catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-// });
+
+async function signUp(id, email, password, repw){
+    const profiles = await getDocs(collection(db, "Profiles"));
+    let ids = profiles.docs.map(x => x.data().id);
+    console.log(ids);
+    if(!ids.includes(id) && password === repw){
+        createUserWithEmailAndPassword(auth, email, sha224(password)).then(async function(user){
+            await setDoc(doc(db, "Profiles", user.user.uid),{
+                id : id,
+                email : email
+            })
+            await setDoc(doc(db, "Auths", user.user.uid),{
+                id : id
+            })
+            // const user = user.user;
+
+            window.location.href = '/';
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage);
+        });
+    }
+}
+
 
 function logIn(email, password){
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    signInWithEmailAndPassword(auth, email, password).then((user) => {
         // const user = userCredential.user;
         window.location.href = '/';
     }).catch((error) => {
@@ -66,8 +87,78 @@ function logIn(email, password){
     });
 }
 
-document.getElementById('log-in').addEventListener("click", function(){
+document.getElementById('log-in')?.addEventListener("click", function(){
     let email = document.getElementById("email").value;
     let password = document.getElementById('password').value;
-    logIn(email, password);
+    logIn(email, sha224(password));
+})
+
+document.getElementById('id')?.addEventListener("input", async function(){
+    let idWarn = document.getElementById("id-warn");
+    idWarn.classList.remove("permit");
+    let sign = document.getElementById('sign-up');
+    sign.classList.remove("id");
+    let regex = /^[a-zA-Z0-9가-힣_.-]{2,25}$/;
+    if(this.value == ''){
+        idWarn.innerText = "아이디를 입력해 주세요.";
+    }else if(regex.test(this.value) == false){
+        idWarn.innerText = "올바르지 않은 아이디 형식입니다.";
+    }else{
+        const profiles = await getDocs(collection(db, "Profiles"));
+        let ids = profiles.docs.map(x => x.data().id);
+        if(ids.includes(this.value)){
+            idWarn.innerText = "이미 사용되고 있는 아이디입니다.";
+        }else{
+            idWarn.innerText = "사용할 수 있는 아이디입니다.";
+            idWarn.classList.add("permit");
+            sign.classList.add("id");
+        }
+    }
+    idWarn.classList.remove("hidden");
+})
+
+document.getElementById('email').addEventListener("input", function(){
+    let sign = document.getElementById('sign-up');
+    sign?.classList.remove("email");
+    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if(this.value == ''){
+        // console.log(this.value);
+    }else if(regex.test(this.value) == false){
+        // console.log(this.value);
+    }else{
+        sign?.classList.add("email");
+    }
+})
+
+document.getElementById('password').addEventListener("input", function(){
+    let sign = document.getElementById('sign-up');
+    sign?.classList.remove("pw");
+    let regex = /^.{0,20}$/;
+    if(regex.test(this.value) == false){
+        // console.log(this.value);
+    }else if(this.value != document.getElementById('repw')?.value){
+        // 
+    }else{
+        sign?.classList.add("pw");
+        sign.classList.add("repw");
+    }
+})
+
+document.getElementById('repw')?.addEventListener("input", function(){
+    let sign = document.getElementById('sign-up');
+    sign.classList.remove("repw");
+    if(this.value != document.getElementById('password').value){
+        // console.log(this.value);
+    }else{
+        sign.classList.add("repw");
+        sign?.classList.add("pw");
+    }
+})
+
+document.getElementById('sign-up')?.addEventListener("click", function(){
+    let id = document.getElementById("id").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById('password').value;
+    let repw = document.getElementById('repw').value;
+    signUp(id, email, password, repw);
 })
