@@ -14,28 +14,30 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-window.onload = function(){
-    onAuthStateChanged(auth, async function(user){
-        if(user){
-            const uid = user.uid;
-            let loged = document.getElementById('loged-in');
-            if(loged){
-                const id = await getDoc(doc(db, "Auths", uid));
-                loged.innerText = '로그인 완료(' + id.data().id + ')';
-                loged.classList.toggle('hidden');
-                document.querySelectorAll('.enter-btn').forEach(a => {
-                    a.classList.toggle('hidden');
-                })
-            }
-            console.log('login, ' + uid);
-        }else{
-            // User is signed out
-            // ...
-            console.log('logout');
+
+onAuthStateChanged(auth, async function(user){
+    console.log(user);
+    if(user){
+        const uid = user.uid;
+        let alram = document.getElementById('alram');
+        let profile = document.getElementById('auth-profile');
+        if(profile && alram){
+            // const id = await getDoc(doc(db, "Auths", uid));
+            // loged.innerText = '로그인 완료(' + id.data().id + ')';
+            alram.classList.toggle('hidden');
+            profile.classList.toggle('hidden');
+            document.querySelectorAll('.enter-btn').forEach(a => {
+                a.classList.toggle('hidden');
+            })
         }
-    });
-}
+        console.log('login, ' + uid);
+    }else{
+        // User is signed out
+        // ...
+        console.log('logout');
+    }
+});

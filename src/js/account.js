@@ -32,7 +32,7 @@ document.querySelectorAll('.hider-toggle').forEach((a, i) => {
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, collection, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -46,7 +46,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -77,14 +77,18 @@ async function signUp(id, email, password, repw){
 
 
 function logIn(email, password){
-    signInWithEmailAndPassword(auth, email, password).then((user) => {
-        // const user = userCredential.user;
-        window.location.href = '/';
-    }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-    });
+    setPersistence(auth, browserSessionPersistence).then(() => {
+
+        signInWithEmailAndPassword(auth, email, password).then((user) => {
+            // const user = userCredential.user;
+            window.location.href = '/';
+            // console.log(user.user);
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage);
+        });
+    })
 }
 
 document.getElementById('log-in')?.addEventListener("click", function(){
